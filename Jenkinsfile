@@ -19,8 +19,13 @@ pipeline {
                 script {
                     def terraformExists = sh(script: 'which terraform', returnStatus: true) == 0
                     if (!terraformExists) {
+                        def arch = sh(script: 'uname -m', returnStdout: true).trim()
+                        def url = arch == 'arm64' ? 
+                                  "https://releases.hashicorp.com/terraform/${TERRAFORM_VERSION}/terraform_${TERRAFORM_VERSION}_darwin_arm64.zip" :
+                                  "https://releases.hashicorp.com/terraform/${TERRAFORM_VERSION}/terraform_${TERRAFORM_VERSION}_darwin_amd64.zip"
+                        
                         sh """
-                        curl -o terraform.zip https://releases.hashicorp.com/terraform/${TERRAFORM_VERSION}/terraform_${TERRAFORM_VERSION}_darwin_amd64.zip
+                        curl -o terraform.zip ${url}
                         unzip -o terraform.zip
                         mv terraform ~/bin/
                         rm terraform.zip
