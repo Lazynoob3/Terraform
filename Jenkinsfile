@@ -21,7 +21,7 @@ pipeline {
                         sh """
                         curl -o terraform.zip https://releases.hashicorp.com/terraform/${TERRAFORM_VERSION}/terraform_${TERRAFORM_VERSION}_darwin_amd64.zip
                         unzip terraform.zip
-                        sudo mv terraform /usr/local/bin/
+                        mv terraform /usr/local/bin/
                         rm terraform.zip
                         """
                     }
