@@ -4,7 +4,7 @@ pipeline {
     environment {
         AWS_CREDENTIALS = credentials('AWS_1_CREDENTAILS')
         TERRAFORM_VERSION = '1.4.6' // Specify the desired Terraform version
-        PATH = "/opt/homebrew/bin:/opt/homebrew/sbin:/usr/local/bin:/System/Cryptexes/App/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin:/Users/lazynoob/bin"
+        PATH = "/usr/bin:/bin:/usr/sbin:/sbin:/Users/lazynoob/bin:${env.PATH}"
     }
 
     stages {
@@ -25,7 +25,6 @@ pipeline {
                         mv terraform ~/bin/
                         rm terraform.zip
                         """
-                        sh 'export PATH=$PATH:~/bin' // Ensure the new path is in the PATH
                     }
                 }
             }
