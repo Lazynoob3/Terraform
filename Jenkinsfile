@@ -3,6 +3,7 @@ pipeline {
 
     environment {
         AWS_CREDENTIALS = credentials('AWS_1_CREDENTAILS')
+        PATH = "/opt/homebrew/Cellar/terraform/1.9.2:$PATH" // Adjust according to your Terraform version path
     }
 
     stages {
