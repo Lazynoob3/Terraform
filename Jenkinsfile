@@ -5,13 +5,6 @@ pipeline {
         AWS_CREDENTIALS = credentials('AWS_1_CREDENTAILS')  // Using the provided AWS credentials ID
     }
 
-    triggers {
-        githubPullRequest {
-            // Automatically trigger the pipeline when a PR is raised to the master branch
-            branch('master')
-        }
-    }
-
     stages {
         stage('Checkout') {
             steps {
