@@ -20,10 +20,11 @@ pipeline {
                     if (!terraformExists) {
                         sh """
                         curl -o terraform.zip https://releases.hashicorp.com/terraform/${TERRAFORM_VERSION}/terraform_${TERRAFORM_VERSION}_darwin_amd64.zip
-                        unzip terraform.zip
-                        mv terraform /usr/local/bin/
+                        unzip -o terraform.zip
+                        mv terraform ~/bin/
                         rm terraform.zip
                         """
+                        sh 'export PATH=$PATH:~/bin' // Ensure the new path is in the PATH
                     }
                 }
             }
