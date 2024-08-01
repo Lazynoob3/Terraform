@@ -22,6 +22,6 @@ module "route_tables" {
   source = "../../modules/route_tables"
   vpc_id = dev-vpc
   internet_gateway_id = module.internet_gateway.internet_gateway_id
-  public_subnet_ids   = module.subnets.public_subnets
-  private_subnet_ids  = module.subnets.private_subnets
+  public_subnets      = module.subnets.public_subnets  # Corrected
+  private_subnets     = module.subnets.private_subnets  # Corrected
 }
