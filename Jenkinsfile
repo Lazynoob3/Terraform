@@ -30,7 +30,7 @@ pipeline {
         stage('Plan Terraform') {
             steps {
                 withAWS(credentials: 'AWS_1_CREDENTAILS', region: 'ap-south-1') {
-                    sh 'cd environments/dev && terraform plan'
+                    sh 'cd environments/dev && terraform plan -out=tfplan'
                 }
             }
         }
@@ -39,7 +39,7 @@ pipeline {
             steps {
                 input message: 'Do you want to apply the changes?'
                 withAWS(credentials: 'AWS_1_CREDENTAILS', region: 'ap-south-1') {
-                    sh 'cd environments/dev && terraform apply -auto-approve'
+                    sh 'cd environments/dev && terraform apply tfplan -auto-approve'
                 }
             }
         }
@@ -47,7 +47,7 @@ pipeline {
 
     post {
         always {
-            archiveArtifacts artifacts: 'environments/dev/terraform.tfstate', allowEmptyArchive: true
+            archiveArtifacts artifacts: 'dev/terraform.tfstate', allowEmptyArchive: true
         }
     }
 }
