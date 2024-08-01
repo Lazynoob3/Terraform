@@ -20,11 +20,3 @@ resource "aws_subnet" "private" {
     Name = "Private Subnet ${count.index + 1}"
   }
 }
-
-output "public_subnets" {
-  value = aws_subnet.public[*].id
-}
-
-output "private_subnets" {
-  value = aws_subnet.private[*].id
-}

@@ -5,7 +5,3 @@ resource "aws_internet_gateway" "this" {
     Name = var.name
   }
 }
-
-output "internet_gateway_id" {
-  value = aws_internet_gateway.this.id
-}
