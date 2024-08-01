@@ -22,7 +22,7 @@ pipeline {
         stage('Initialize Terraform') {
             steps {
                 withAWS(credentials: 'AWS_1_CREDENTAILS', region: 'us-east-1') {
-                    sh 'cd environments/dev && terraform init'
+                    sh 'cd environments/dev && terraform init -reconfigure'
                 }
             }
         }
