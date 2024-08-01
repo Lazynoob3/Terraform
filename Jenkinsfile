@@ -21,7 +21,7 @@ pipeline {
 
         stage('Initialize Terraform') {
             steps {
-                withAWS(credentials: 'AWS_1_CREDENTAILS', region: 'us-east-1') {
+                withAWS(credentials: 'AWS_1_CREDENTAILS', region: 'ap-south-1') {
                     sh 'cd environments/dev && terraform init -reconfigure'
                 }
             }
@@ -29,7 +29,7 @@ pipeline {
 
         stage('Plan Terraform') {
             steps {
-                withAWS(credentials: 'AWS_1_CREDENTAILS', region: 'us-east-1') {
+                withAWS(credentials: 'AWS_1_CREDENTAILS', region: 'ap-south-1') {
                     sh 'cd environments/dev && terraform plan'
                 }
             }
@@ -38,7 +38,7 @@ pipeline {
         stage('Apply Terraform') {
             steps {
                 input message: 'Do you want to apply the changes?'
-                withAWS(credentials: 'AWS_1_CREDENTAILS', region: 'us-east-1') {
+                withAWS(credentials: 'AWS_1_CREDENTAILS', region: 'ap-south-1') {
                     sh 'cd environments/dev && terraform apply -auto-approve'
                 }
             }
