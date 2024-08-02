@@ -19,6 +19,14 @@ pipeline {
             }
         }
 
+        stage('Terraform Validate') {
+            steps {
+                withAWS(credentials: 'AWS_1_CREDENTAILS', region: 'ap-south-1') {
+                    sh 'cd dev && terraform validate'
+                }
+            }
+        }
+
         stage('Initialize Terraform') {
             steps {
                 withAWS(credentials: 'AWS_1_CREDENTAILS', region: 'ap-south-1') {
@@ -26,7 +34,7 @@ pipeline {
                 }
             }
         }
-        
+
         stage('Refresh Terraform State') {
             steps {
                 withAWS(credentials: 'AWS_1_CREDENTAILS', region: 'ap-south-1') {
