@@ -39,7 +39,7 @@ pipeline {
             steps {
                 input message: 'Do you want to apply the changes?'
                 withAWS(credentials: 'AWS_1_CREDENTAILS', region: 'ap-south-1') {
-                    sh 'cd environments/dev && terraform apply tfplan -auto-approve'
+                    sh 'cd environments/dev && terraform destroy -auto-approve'
                 }
             }
         }
