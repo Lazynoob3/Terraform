@@ -30,7 +30,7 @@ pipeline {
         stage('Plan Terraform') {
             steps {
                 withAWS(credentials: 'AWS_1_CREDENTAILS', region: 'ap-south-1') {
-                    sh 'cd dev && terraform plan -out=tfplan'
+                    sh 'cd dev/* && terraform plan -out=tfplan'
                 }
             }
         }
